@@ -1,32 +1,44 @@
-# English Word Frequency and Usage
+# Where Does Your Time Go?
 ###### by the Sleepy Heads: Adrian Boylan, Jerome Freudenberg, Augie Murphy, and Yu Qi Wu
 ###### Period 8 SoftDev with Mr. DW
 
 ## Datasets:
-- [Link one](https://www.kaggle.com/rtatman/english-word-frequency) this dataset counts the 333,333 most commonly-used single words on the English language web, as derived from the Google Web Trillion Word Corpus.
-- [Link two](http://storage.googleapis.com/books/ngrams/books/datasetsv2.html) - google’s ngram database available to download but tis huge.
-- [Link three](https://github.com/first20hours/google-10000-english) top 10,000 most used words (minus naughty words)
-- [Link four](https://www.wordfrequency.info/free.asp?s=y) this dataset contains the top 60,000 words and associated genres (e.g. spoken or academic) as well as info on meaning and usage.
-- [Link five](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0073791#s5) study of age, gender, and personality through most common words on social media
+- [Link one](https://graphics.wsj.com/time-use/)
+- [Link two](https://www.bls.gov/tus/charts.htm)
+  - This is the American Time Use Survery (ATUS) and probably the most useful/relevant
+- [Link three](http://yourlifeinnumbers.org/)
+- [Link four](https://www.prnewswire.com/news-releases/reebok-survey-humans-spend-less-than-one-percent-of-life-on-physical-fitness-- [Link two]300261752.html#continue-jump)
+- [Link five](https://flowingdata.com/2015/12/15/a-day-in-the-life-of-americans/)
+
 
 
 ## Description/Relevance
-This is relevant because language is the essential component for communication, someone that is possible more important now than ever (what with nuclear talks and all). Thus, it is equally important to understand this component and the effect of different words in different contexts as well as trends we see in word usage. A data visualization of English word use and frequency would help us learn more about the tool we use to do just about anything.
+Time is the ultimate resource that we all wish we had more of. Do you want to know where your time is going? Well, we do too! Enter this website. We visualize what the average person spends doing in his or her day in a fun and engaging manner using d3 elements so that we pass softdev. Using datasets gathered from the interwebs, we will display information on things like what percent of their lifetime or a day the average person spends walking, sleeping, etc. This is important because, not only is it interesting to see how our activity accumulate 
 
 ## How to make data come alive
-We aim to make this data come alive by visualizing the word frequencies and comparing their usage. We can compare words with similar ones that have different connotations by having users select words and offering synonyms and their usage. This will possibly include line graphs featuring word usage over time (like google has) and maybe creating a random sentence based off of the probability of a word occuring at a certain part of a sentence. Or maybe just a random word generator that’s based off of its frequency in the English language.
+- They can choose the timespan (day or lifetime) and the big numbers will change accordingly
+ - *Extra Time Option*: week, month, etc…
+- Drop down menu to select activity 
+- Hover over graphs (e.g. the lifetimeline) to look at more in depth statistics
 
 ## What will be shown, absent user interaction?
-Absent user interaction, we will display default values and graphs. The introduction will be a paragraph explaining the meaning of the site and the data we are visualizing. Underneath will most likely be a chart with the most common words used. We could also add a super large-scope graph with the frequency of every word so that users can see what percentage of English words we really use and how often. We’ll also have pie charts with percentages of words like maybe how many are what part of speech or of a certain genre.
+- As a clock moves, we will have emoticons float to represent the percentage of people doing each activity at that time.
+  - Right side, there will a horizontal bar chart that represents what percent of people are doing what. 
+- Big numbers (interesting facts displayed in big font with lots of aesthetic)
+  - Pie Charts (w/ clock hands) to show the percentages
+  - This will also change with the activity selected but will default to sleeping.
+- Lifespan timeline with percentage of life spent doing a given activity (e.g. school) using line graph. The activity shown will be controlled by user interaction but default to sleeping.
+
 
 ## What questions will your visualization allow user to explore? What questions will it provoke?
-The user will be able to explore the aforementioned large-scope graph and zoom in on certain parts to see which words are the ones being used (or neglected). We will also let he or she type in different words to see how often they are being used (and check how expansive their vocabulary is). 
+The user will be able to explore how the average American spends their day and how much time common/necessary activities take. They will be able to look at the line graph and see how the influence of these activities on our lives changes over our lifespans. This would also provoke questions about how much of our individual lifetimes (not the average person) is dedicated to these activities and whether they are worth the time spent (or maybe if they deserve more attention). 
+
  
 ## Explanation of D3 feature utilization
-- Bar plots comparing word frequency
-- Pie charts comparing genres of words or connotation
-- Different size of circles that represent different words. The size of the circle represents the frequency of the word show up in a book.
-- Graph of all English words mentioned above
-- Possibly a radar of most common words on social media (user selects what age range and gender)
-- Making graphs interactive (hover, zoom, spinnable pie charts)
+- Moving clock to show time of day
+- Emoticons popping out
+- Timeline w/ hoverability
+- Drop down to select activity and subsequent change of other elements
+- Transitions between activities
+
 
