@@ -42,16 +42,14 @@ var scaleH = function(){
     d3.scaleLinear().domain([0, 11 + 59/60]).range([0, 2 * pi]);
 }
 
-/**
-   var activity = "";
 
-var getSelection = function(){
+var activity = "";
+
+var getActivity = function(){
     activity = document.getElementById("activity").value;
 }
-**/
 
 var data = [2, 4, 7, 12];
-
 
 var body = d3.select("body");
 
@@ -116,7 +114,7 @@ var create = function(){
             .attr("y2", 200 + tickLength)
             .attr("transform", "rotate(" + i * 6 + "," + 250 + "," + 250 + ")")
     }
-    
+
     var center = svg.append("svg:circle")
 	.attr("r",15)
 	.attr("fill", "black")
@@ -196,5 +194,3 @@ var tick = function(){
 }
 
 setInterval(tick);
-
-
