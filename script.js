@@ -1,3 +1,9 @@
+var activity = "";
+
+var getActivity = function(){
+    activity = document.getElementById("activity").value;
+}
+
 var hr;
 var min;
 var sec;
@@ -31,25 +37,6 @@ var time = function(){
 }
 
 var pi = Math.PI;
-
-var scaleS = function(){
-    d3.scaleLinear().domain([0, 59 + 999/1000]).range([0, 2 * pi]);
-}
-var scaleM = function(){
-    d3.scaleLinear().domain([0, 59 + 59/60]).range([0, 2 * pi]);
-}
-var scaleH = function(){
-    d3.scaleLinear().domain([0, 11 + 59/60]).range([0, 2 * pi]);
-}
-
-
-var activity = "";
-
-var getActivity = function(){
-    activity = document.getElementById("activity").value;
-}
-
-var data = [2, 4, 7, 12];
 
 var body = d3.select("body");
 
@@ -163,14 +150,6 @@ var set = function(){
 	.attr("x2", Math.cos(2*(min-15)*pi/60)*200 + 250)
 	.attr("y2", Math.sin(2*(min-15)*pi/60)*200 + 250);
 
-    minHand = svg.append("line")
-	.attr("stroke","black")
-	.attr("stroke-width",5)
-	.attr("x1",250)
-	.attr("y1",250)
-	.attr("x2", Math.cos(2*(min-15)*pi/60)*200 + 250)
-	.attr("y2", Math.sin(2*(min-15)*pi/60)*200 + 250);
-
     hrHand = svg.append("line")
     	.attr("stroke","black")
 	.attr("stroke-width",5)
@@ -181,6 +160,7 @@ var set = function(){
 
 }
 set();
+
 var tick = function(){
     getTimes();
     secHand.attr("x2", Math.cos(2*(sec-15)*pi/60)*200 + 250)
@@ -193,4 +173,13 @@ var tick = function(){
 	.attr("y2", Math.sin(2*(hr-15)*pi/60)*150 + 250);
 }
 
-setInterval(tick);
+//var slider = 
+    //d3.slider();
+    //.value(1000)
+    //.on("slide", function(evt, value){
+	//setInterval(tick, value);
+    //});
+
+
+setInterval(tick,1/10000);
+

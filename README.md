@@ -7,7 +7,7 @@
 - [Link two](https://www.bls.gov/tus/charts.htm)
   - This is the American Time Use Survery (ATUS) and probably the most useful/relevant
 - [Link three](http://yourlifeinnumbers.org/)
-- [Link four](https://www.prnewswire.com/news-releases/reebok-survey-humans-spend-less-than-one-percent-of-life-on-physical-fitness-- [Link two]300261752.html#continue-jump)
+- [Link four](https://www.prnewswire.com/news-releases/reebok-survey-humans-spend-less-than-one-percent-of-life-on-physical-fitness)
 - [Link five](https://flowingdata.com/2015/12/15/a-day-in-the-life-of-americans/)
 
 
