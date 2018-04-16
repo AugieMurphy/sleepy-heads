@@ -163,14 +163,6 @@ var set = function(){
 	.attr("x2", Math.cos(2*(min-15)*pi/60)*200 + 250)
 	.attr("y2", Math.sin(2*(min-15)*pi/60)*200 + 250);
 
-    minHand = svg.append("line")
-	.attr("stroke","black")
-	.attr("stroke-width",5)
-	.attr("x1",250)
-	.attr("y1",250)
-	.attr("x2", Math.cos(2*(min-15)*pi/60)*200 + 250)
-	.attr("y2", Math.sin(2*(min-15)*pi/60)*200 + 250);
-
     hrHand = svg.append("line")
     	.attr("stroke","black")
 	.attr("stroke-width",5)
