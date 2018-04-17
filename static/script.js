@@ -4,6 +4,22 @@ var getActivity = function(){
     activity = document.getElementById("activity").value;
 }
 
+
+/*========================PIE CHART========================*/
+
+d3.csv("../data/table2.csv", function(data) {
+  console.log(data[0]);
+});
+
+
+
+
+
+
+
+
+
+
 var hr;
 var min;
 var sec;
@@ -173,7 +189,7 @@ var tick = function(){
 	.attr("y2", Math.sin(2*(hr-15)*pi/60)*150 + 250);
 }
 
-//var slider = 
+//var slider =
     //d3.slider();
     //.value(1000)
     //.on("slide", function(evt, value){
@@ -182,4 +198,3 @@ var tick = function(){
 
 
 setInterval(tick,1/10000);
-
