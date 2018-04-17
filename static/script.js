@@ -7,9 +7,13 @@ var getActivity = function(){
 
 /*========================PIE CHART========================*/
 
-d3.csv("../data/table2.csv", function(data) {
-  console.log(data[0]);
+d3.csv("/static/table2.csv", function(data) {
+  console.log(data);
 });
+
+// d3.csv("https://gist.githubusercontent.com/d3noob/fa0f16e271cb191ae85f/raw/bf896176236341f56a55b36c8fc40e32c73051ad/treedata.csv", function(data){
+//     console.log(data);
+// });
 
 
 
