@@ -7,13 +7,33 @@ var getActivity = function(){
 
 /*========================PIE CHART========================*/
 
+var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other
+
 d3.csv("/static/table2.csv", function(data) {
-  console.log(data);
+  sleeping = data[0];
+  ingestion = data[1];
+  household = data[2];
+  buying = data[3];
+  caring_house = data[4];
+  caring_not_house = data[5];
+  working = data[6];
+  education = data[7];
+  organizing = data[8];
+  leisuresports = data[9];
+  social = data[10];
+  other = data[11];
+  console.log(sleeping["avg_weekly"]);
 });
 
 // d3.csv("https://gist.githubusercontent.com/d3noob/fa0f16e271cb191ae85f/raw/bf896176236341f56a55b36c8fc40e32c73051ad/treedata.csv", function(data){
 //     console.log(data);
 // });
+
+var pieSVG = d3.select("svg");
+var height = pieSVG.node().getBoundingClientRect().height;
+var width = pieSVG.node().getBoundingClientRect().width;
+var radius = height / 2;
+
 
 
 
