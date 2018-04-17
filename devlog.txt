@@ -1,0 +1,38 @@
+Sleepy Heads Devlog
+Roster: Adrian Boylan, Jerome Freudenberg, Augie Murphy, Yuqi Wu
+
+_____|~~\_____      _____________
+_-~               \    |    \
+_-    | )     \    |__/   \   \
+_-         )   |   |  |     \  \
+_-    | )     /    |--|      |  |
+__-_______________ /__/_______|  |_________
+(                |----         |  |
+`---------------'--\\\\      .`--'
+                        `||||
+
+all -- 2018-03-27 13:00:00
+brainstorming and inital ideas
+repo creation
+
+all -- 2018-03-28 22:00:00
+writeup of readme
+
+freudenbergJ -- 2018-04-11 13:00:00
+new readme writeup for newly agreed upon idea
+
+wuY + murphyA -- 2018-04-12 22:00:00
+clock ticking
+pie charts
+
+boylanA -- 2018-04-13 22:00:00
+activity selection
+
+wuY + boylanA -- 2018-04-16 13:00:00
+data solidification and adding
+
+all -- 2018-04-17 13:00:00
+flask app creation and routing
+
+freudenbergJ -- 2018-04-17 17:48:32
+csv reading into js
