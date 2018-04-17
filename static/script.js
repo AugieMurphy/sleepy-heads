@@ -4,9 +4,48 @@ var getActivity = function(){
     activity = document.getElementById("activity").value;
 }
 
+
+
+/*========================PIE CHART========================*/
+
+var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other
+
+d3.csv("/static/table2.csv", function(data) {
+  sleeping = data[0];
+  ingestion = data[1];
+  household = data[2];
+  buying = data[3];
+  caring_house = data[4];
+  caring_not_house = data[5];
+  working = data[6];
+  education = data[7];
+  organizing = data[8];
+  leisuresports = data[9];
+  social = data[10];
+  other = data[11];
+  console.log(sleeping["avg_weekly"]);
+});
+
+// d3.csv("https://gist.githubusercontent.com/d3noob/fa0f16e271cb191ae85f/raw/bf896176236341f56a55b36c8fc40e32c73051ad/treedata.csv", function(data){
+//     console.log(data);
+// });
+
+var pieSVG = d3.select("svg");
+var height = pieSVG.node().getBoundingClientRect().height;
+var width = pieSVG.node().getBoundingClientRect().width;
+var radius = height / 2;
+
+
+
+
+
+
+
 var hr=0;
 var min=0;
 var sec=0;
+
+
 
 var getTimes = function(){
     sec +=1;
@@ -52,7 +91,7 @@ var create = function(){
 	.attr("r",15)
 	.attr("fill", "black")
 	.attr("transform", "translate(" + (250) +  "," + (250) + ")");
-    
+
     for( var i = 0; i < 60; i+=1 ){
 	var twoX, twoY, oneX, oneY;
 	twoX = Math.cos(2*i*pi/60)*250 + 250;
@@ -119,7 +158,7 @@ var tick = function(){
 	.attr("y2", Math.sin(2*(hr-15)*pi/60)*150 + 250);
 }
 
-//var slider = 
+//var slider =
     //d3.slider();
     //.value(1000)
     //.on("slide", function(evt, value){
@@ -128,4 +167,3 @@ var tick = function(){
 
 
 setInterval(tick,1/10000);
-
