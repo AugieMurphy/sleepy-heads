@@ -4,37 +4,30 @@ var getActivity = function(){
     activity = document.getElementById("activity").value;
 }
 
-var hr;
-var min;
-var sec;
+var hr=0;
+var min=0;
+var sec=0;
 
 var getTimes = function(){
-    var currTime = new Date();
-    hr = currTime.getHours();
-    min = currTime.getMinutes();
-    sec = currTime.getSeconds();
+    sec +=1;
+    if( sec < 59 ){
+	sec+=1;
+    }
+    else if( min < 59){
+	if( (min % 12/5)== 0 && min != 0 ){
+	    hr+=1;
+	}
+	sec=0;
+	min+=1;
+    }
+    else{
+	min = 0;
+	sec = 0;
+	hr += 1;
+    }
 }
 
 getTimes();
-
-var time = function(){
-    var clockData = [
-	{
-	    "unit": "second",
-	    "value": sec
-	},
-	{
-	    "unit": "minute",
-	    "value": min
-	},
-	{
-	    "unit": "hour",
-	    "value": hr
-	}
-    ];
-
-    return clockData;
-}
 
 var pi = Math.PI;
 
@@ -46,67 +39,20 @@ var svg = body.append("svg")
     .style("border-style","solid")
     .style("border-width","5px");
 
-  var handBackLength = function(d) {
-    if (d[0] == "second")
-      return Math.round(0.25 * 250)
-    else
-      return Math.round(0.10 * 250)
-  }
-
-  var handLength = function(d) {
-    if (d[0] == "hour")
-      return Math.round(0.45 * 250)
-    else
-      return Math.round(0.90 * 250)
-  }
-
-var rotationTransform = function(d) {
-    var angle = 0;
-    if(d.unit == "hour"){
-	angle = (d[1] % 12) * 30;
-    }
-    else{
-	angle = d[1] * 6;
-    }
-    return "rotate(" + angle + "," + 250 + "," + 250 + ")"
-}
-
 var create = function(){
-    var hourTickLength = Math.round(250*0.2);
-    var minuteTickLength = Math.round(250*0.075);
-    var clock = svg.append("svg:circle")
+    var clock = svg.append("circle")
 	.attr("r",250)
 	.attr("fill", "LightSteelBlue")
-	.attr("class","clock outercircle")
 	.attr("stroke", "black")
 	.attr("stroke-width",5)
 	.attr("transform", "translate(" + (250) +  "," + (250) + ")")
 	.enter();
 
-    for (var i = 0; i < 60; i+=1) {
-      var tickLength, tickClass
-      if ((i % 5) == 0) {
-        tickLength = hourTickLength
-        tickClass = "hourtick"
-      }
-      else {
-        tickLength = minuteTickLength
-          tickClass = "minutetick"
-      }
-	svg.append("line")
-            .attr("class", tickClass + " face")
-            .attr("x1", 250)
-            .attr("y1", 4)
-            .attr("x2", 250)
-            .attr("y2", 200 + tickLength)
-            .attr("transform", "rotate(" + i * 6 + "," + 250 + "," + 250 + ")")
-    }
-
-    var center = svg.append("svg:circle")
+    var center = svg.append("circle")
 	.attr("r",15)
 	.attr("fill", "black")
-	.attr("class", "clock innercircle")
 	.attr("transform", "translate(" + (250) +  "," + (250) + ")");
+    
     for( var i = 0; i < 60; i+=1 ){
 	var twoX, twoY, oneX, oneY;
 	twoX = Math.cos(2*i*pi/60)*250 + 250;
