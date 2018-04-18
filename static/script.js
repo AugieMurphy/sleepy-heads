@@ -41,6 +41,42 @@ var radius = height / 2;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*======================BAR CHART======================*/
+var activity_header = []
+var activity_time = []
+var chart = d3.select(".chart");
+var bar = chart.selectAll("div");
+var barUpdate = bar.data(activity_time);
+var barEnter = barUpdate.enter().append("div");
+barEnter.transition().duration(2000).style("width", function(d) {
+  return d * 10 + "px"; });
+barEnter.text(function(d) { return d; });
+bar.data(activity_header).append("p").attr("style", "float:none").text(function(d){
+  return d; });
+
+
+
+
+
 var hr=0;
 var min=0;
 var sec=0;
