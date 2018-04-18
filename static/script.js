@@ -8,12 +8,27 @@ var getActivity = function(){
     activity = document.getElementById("activity").value;
 }
 
+/*======================BAR CHART======================*/
+var activity_header = []
+var activity_time = []
+var chart = d3.select(".chart");
+var bar = chart.selectAll("div");
+var barUpdate = bar.data(activity_time);
+var barEnter = barUpdate.enter().append("div");
+barEnter.transition().duration(2000).style("width", function(d) {
+  return d * 10 + "px"; });
+barEnter.text(function(d) { return d; });
+bar.data(activity_header).append("p").attr("style", "float:none").text(function(d){
+  return d; });
+
+
 
 
 
 /*========================PIE CHART========================*/
 var dataset = [];
 var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other, pieSVG, arc, pie, path;
+var init, update;
 
 d3.csv("/static/table2.csv", function(data) {
     sleeping = data[0];
@@ -56,18 +71,21 @@ d3.csv("/static/table2.csv", function(data) {
     arc = d3.arc()
 	.innerRadius(0)
 	.outerRadius(radius);
-    
-    var init = function(){
-	pie = d3.pie()
-	    .value( function(d){
-		if( activity == "avg_weekly" ){ return d.avg_weekly; }
-		else if( activity == "avg_weekend" ){ return d.avg_weekend; }
+	pie = d3.pie();
+
+
+  init = function(){
+    activity = document.getElementById("activity").value;
+    console.log(activity);
+	pie.value( function(d){
+		if( activity == "avg_weekly" ){ console.log(d.avg_weekly); return d.avg_weekly; }
+		else if( activity == "avg_weekend" ){ console.log(d.avg_weekend); return d.avg_weekend; }
 		else if( activity == "percent_weekly" ){ return d.percent_weekly; }
 		else if( activity == "percent_weekend" ){ return d.percent_weekend; }
 		else if( activity == "pro_weekly" ){ return d.pro_weekly; }
 		else if( activity == "pro_weekend" ){ return d.pro_weekend; }
 
-	    });
+  });
 
 	path = pieSVG.selectAll("path")
 	    .data(pie(dataset))
@@ -91,11 +109,17 @@ d3.csv("/static/table2.csv", function(data) {
 	    .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
     }
 
-    setInterval(init);
+  update = function() {
+    console.log("hi");
 
+
+  }
+
+    // setInterval(init);
+// init();
 
 });
-
+// init();
 
 /*========================  CLOCK  ========================*/
 
