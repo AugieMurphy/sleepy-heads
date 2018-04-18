@@ -1,4 +1,8 @@
-var activity = "";
+var body = d3.select("body");
+
+/*========================BAR CHART========================*/
+
+var activity = "avg_weekly";
 
 var getActivity = function(){
     activity = document.getElementById("activity").value;
@@ -6,46 +10,99 @@ var getActivity = function(){
 
 
 
-/*========================PIE CHART========================*/
 
-var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other
+/*========================PIE CHART========================*/
+var dataset = [];
+var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other, pieSVG, arc, pie, path;
 
 d3.csv("/static/table2.csv", function(data) {
-  sleeping = data[0];
-  ingestion = data[1];
-  household = data[2];
-  buying = data[3];
-  caring_house = data[4];
-  caring_not_house = data[5];
-  working = data[6];
-  education = data[7];
-  organizing = data[8];
-  leisuresports = data[9];
-  social = data[10];
-  other = data[11];
-  console.log(sleeping["avg_weekly"]);
-});
+    sleeping = data[0];
+    ingestion = data[1];
+    household = data[2];
+    buying = data[3];
+    caring_house = data[4];
+    caring_not_house = data[5];
+    working = data[6];
+    education = data[7];
+    organizing = data[8];
+    leisuresports = data[9];
+    social = data[10];
+    other = data[11];
+    //console.log(sleeping["avg_weekly"]);
+    dataset = [sleeping,ingestion,household,buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other];
+
+
+//var dataset = [sleeping,ingestion,household,buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other];
+
 
 // d3.csv("https://gist.githubusercontent.com/d3noob/fa0f16e271cb191ae85f/raw/bf896176236341f56a55b36c8fc40e32c73051ad/treedata.csv", function(data){
 //     console.log(data);
-// });
-
-var pieSVG = d3.select("svg");
-var height = pieSVG.node().getBoundingClientRect().height;
-var width = pieSVG.node().getBoundingClientRect().width;
-var radius = height / 2;
+    // });
 
 
+    pieSVG = body.append("svg");
+    var height = 500;
+    var width = 500;
+    var radius = height / 2;
 
 
+    pieSVG.attr("width", width)
+	.attr("height", height)
+	.style("border-style","solid")
+	.style("border-width","5px")
+	.append("g")
+	.attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
 
+    arc = d3.arc()
+	.innerRadius(0)
+	.outerRadius(radius);
+    
+    var init = function(){
+	pie = d3.pie()
+	    .value( function(d){
+		if( activity == "avg_weekly" ){ return d.avg_weekly; }
+		else if( activity == "avg_weekend" ){ return d.avg_weekend; }
+		else if( activity == "percent_weekly" ){ return d.percent_weekly; }
+		else if( activity == "percent_weekend" ){ return d.percent_weekend; }
+		else if( activity == "pro_weekly" ){ return d.pro_weekly; }
+		else if( activity == "pro_weekend" ){ return d.pro_weekend; }
+
+	    });
+
+	path = pieSVG.selectAll("path")
+	    .data(pie(dataset))
+	    .enter()
+	    .append("path")
+	    .attr("d", arc)
+	    .attr("fill", function(d, i) {
+		if( i  == 0 ){ return "lightgreen"; }
+		else if( i == 1 ){ return "lightsteelblue"; }
+		else if( i == 2 ){ return "red"; }
+		else if( i == 3 ){ return "green"; }
+		else if( i == 4 ){ return "maroon"; }
+		else if( i == 5 ){ return "orange"; }
+		else if( i == 6 ){ return "steelblue"; }
+		else if( i == 7 ){ return "purple"; }
+		else if( i == 8 ){ return "goldenrod"; }
+		else if( i == 9 ){ return "blue"; }
+		else if( i == 10 ){ return "cyan"; }
+		else if( i == 11 ){ return "navy"; }
+	    })
+	    .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
+    }
+
+    setInterval(init);
+
+
+});
+
+
+/*========================  CLOCK  ========================*/
 
 
 var hr=0;
 var min=0;
 var sec=0;
-
-
 
 var getTimes = function(){
     sec +=1;
@@ -69,8 +126,6 @@ var getTimes = function(){
 getTimes();
 
 var pi = Math.PI;
-
-var body = d3.select("body");
 
 var svg = body.append("svg")
     .attr("width",500)

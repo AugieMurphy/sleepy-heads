@@ -18,13 +18,15 @@
     <h1> Where does your time go? </h1>
     <form>
       <select id="activity" onchange="getActivity()">
-	<option>sleeping</option>
-	<option>eating</option>
-	<option>studying</option>
-	<option>washing dishes</option>
+	<option stat="0">avg_weekly</option>
+	<option stat="1">avg_weekend</option>
+	<option>percent_weekly</option>
+	<option>percent_weekend</option>
+	<option>pro_weekly</option>
+	<option>pro_weekend</option>
       </select>
     </form>
-    <svg width = "900" height = "500" id = "svgfield"></svg>
+    <!--svg width = "900" height = "500" id = "svgfield"></svg!-->
 
     <script src="../static/script.js"></script>
     <script type = "text/csv" src = "../data/table2.csv"></script>
