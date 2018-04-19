@@ -6,6 +6,7 @@
     <script src="http://d3js.org/d3.v4.min.js"
             charset="utf-8"></script>
     <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href={{ url_for('static',filename='css/style.css')}}>
     <!-- <script src="d3.v4.min.js"></script> -->
     <!-- <script src="../static/script.js"></script> -->
@@ -17,6 +18,7 @@
 
     <!-- select an activity !-->
     <h1> Where does your time go? </h1>
+    <div class="dropdown">
     <form>
       <select id="activity" onchange="init()">
 	<option stat="0">avg_weekly</option>
@@ -27,6 +29,7 @@
 	<option>pro_weekend</option>
       </select>
     </form>
+  </div>
 
     <!--svg width = "900" height = "500" id = "svgfield"></svg!-->
 
