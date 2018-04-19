@@ -9,3 +9,9 @@
   p {
     font-weight: bold;
   }
+div {
+  padding-left: 10px;
+}
+.intro {
+  background-color: lightblue;
+}
