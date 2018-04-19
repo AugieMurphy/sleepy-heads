@@ -75,7 +75,7 @@ d3.csv("/static/table2.csv", function(data) {
 
 
   init = function(){
-    activity = document.getElementById("activity").value;
+    //activity = document.getElementById("activity").value;
     console.log(activity);
 	pie.value( function(d){
 		if( activity == "avg_weekly" ){ console.log(d.avg_weekly); return d.avg_weekly; }
@@ -108,15 +108,37 @@ d3.csv("/static/table2.csv", function(data) {
 	    })
 	    .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
     }
+    init();
+    
+    update = function() {
+	if( activity == document.getElementById("activity").value ){}
+	else{
+	    activity = document.getElementById("activity").value;
+	    path = pieSVG.selectAll("path")
+		.data(pie(dataset))
+		.attr("d", arc)
+		.attr("fill", function(d, i) {
+		    
+		    if( i  == 0 ){ return "lightgreen"; }
+		    else if( i == 1 ){ return "lightsteelblue"; }
+		    else if( i == 2 ){ return "red"; }
+		    else if( i == 3 ){ return "green"; }
+		    else if( i == 4 ){ return "maroon"; }
+		    else if( i == 5 ){ return "orange"; }
+		    else if( i == 6 ){ return "steelblue"; }
+		    else if( i == 7 ){ return "purple"; }
+		    else if( i == 8 ){ return "goldenrod"; }
+		    else if( i == 9 ){ return "blue"; }
+		    else if( i == 10 ){ return "cyan"; }
+		    else if( i == 11 ){ return "navy"; }
 
-  update = function() {
-    console.log("hi");
-
-
-  }
+		})
+		.attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
+	}
+    }
 
     // setInterval(init);
-// init();
+    // init();
 
 });
 // init();
