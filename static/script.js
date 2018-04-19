@@ -55,7 +55,7 @@ d3.csv("/static/table2.csv", function(data) {
     // });
 
 
-    pieSVG = body.append("svg");
+    pieSVG = d3.select("#chart").append("svg");
     var height = 500;
     var width = 500;
     var radius = height / 2;
@@ -69,7 +69,7 @@ d3.csv("/static/table2.csv", function(data) {
 	.attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
 
     arc = d3.arc()
-	.innerRadius(0)
+	.innerRadius(100)
 	.outerRadius(radius);
 	pie = d3.pie();
 
@@ -109,7 +109,7 @@ d3.csv("/static/table2.csv", function(data) {
 	    .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
     }
     init();
-    
+
     update = function() {
 	if( activity == document.getElementById("activity").value ){}
 	else{
@@ -118,7 +118,7 @@ d3.csv("/static/table2.csv", function(data) {
 		.data(pie(dataset))
 		.attr("d", arc)
 		.attr("fill", function(d, i) {
-		    
+
 		    if( i  == 0 ){ return "lightgreen"; }
 		    else if( i == 1 ){ return "lightsteelblue"; }
 		    else if( i == 2 ){ return "red"; }
