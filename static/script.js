@@ -27,7 +27,7 @@ bar.data(activity_header).append("p").attr("style", "float:none").text(function(
 
 /*========================PIE CHART========================*/
 var dataset = [];
-var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other, pieSVG, arc, pie, path;
+var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other, pieSVG, arc, pie, path,text;
 var init, update;
 
 d3.csv("/static/table2.csv", function(data) {
@@ -87,26 +87,62 @@ d3.csv("/static/table2.csv", function(data) {
 
   });
 
-	path = pieSVG.selectAll("path")
-	    .data(pie(dataset))
-	    .enter()
-	    .append("path")
-	    .attr("d", arc)
-	    .attr("fill", function(d, i) {
-		if( i  == 0 ){ return "lightgreen"; }
-		else if( i == 1 ){ return "lightsteelblue"; }
-		else if( i == 2 ){ return "red"; }
-		else if( i == 3 ){ return "green"; }
-		else if( i == 4 ){ return "maroon"; }
-		else if( i == 5 ){ return "orange"; }
-		else if( i == 6 ){ return "steelblue"; }
-		else if( i == 7 ){ return "purple"; }
-		else if( i == 8 ){ return "goldenrod"; }
-		else if( i == 9 ){ return "blue"; }
-		else if( i == 10 ){ return "cyan"; }
-		else if( i == 11 ){ return "navy"; }
-	    })
-	    .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
+      path = pieSVG.selectAll("path")
+	  .data(pie(dataset))
+	  .enter()
+	  .append("path")
+	  .attr("d", arc)
+	  .attr("fill", function(d, i) {
+	      if( i  == 0 ){ return "lightgreen"; }
+	      else if( i == 1 ){ return "lightsteelblue"; }
+	      else if( i == 2 ){ return "red"; }
+	      else if( i == 3 ){ return "green"; }
+	      else if( i == 4 ){ return "maroon"; }
+	      else if( i == 5 ){ return "orange"; }
+	      else if( i == 6 ){ return "steelblue"; }
+	      else if( i == 7 ){ return "purple"; }
+	      else if( i == 8 ){ return "goldenrod"; }
+	      else if( i == 9 ){ return "blue"; }
+	      else if( i == 10 ){ return "cyan"; }
+	      else if( i == 11 ){ return "navy"; }
+	  })
+	  .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")")
+	  .transition()
+	  .ease(d3.easeLinear)
+	  .duration(2000)
+	  .attrTween("d", pieTween);
+
+      text = pieSVG.selectAll("text")
+      	  .transition()
+	  .ease(d3.easeLinear)
+	  .duration(2000)
+	  .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")";})
+	  .attr("dy", ".35em")
+	  .text(function(d) {
+	      if (activity == "avg_weekly"){
+		  return d.data.avg_weekly;
+	      }
+	      else if (activity == "avg_weekend"){
+		  return d.data.avg_weekend;
+	      }
+	      else if (activity == "percent_weekly"){
+		  return d.data.percent_weekly;
+	      }
+	      else if (activity == "percent_weekend"){
+		  return d.data.percent_weekend;
+	      }
+	      else if (activity == "pro_weekly"){
+		  return d.data.pro_weekly;
+	      }
+	      else{
+		  return d.data.pro_weekend;
+	      }
+	  });
+  }
+    var pieTween = function(b){
+	b.innerRadius = 0;
+	var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
+	return function(t){ return arc(i(t)); };
     }
     init();
     
@@ -133,7 +169,11 @@ d3.csv("/static/table2.csv", function(data) {
 		    else if( i == 11 ){ return "navy"; }
 
 		})
-		.attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
+		.attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")")
+		.transition()
+		.ease(d3.easeLinear)
+		.duration(2000)
+		.attrTween("d", pieTween);
 	}
     }
 
