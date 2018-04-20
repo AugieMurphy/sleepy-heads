@@ -1,6 +1,6 @@
 var body = d3.select("body");
 
-/*========================BAR CHART========================*/
+/*========================SELECT CHART========================*/
 
 var activity = "avg_weekly";
 
@@ -11,17 +11,59 @@ var getActivity = function(){
 /*======================BAR CHART======================*/
 var activity_header = []
 var activity_time = []
-var chart = d3.select(".chart");
-var bar = chart.selectAll("div");
-var barUpdate = bar.data(activity_time);
-var barEnter = barUpdate.enter().append("div");
-barEnter.transition().duration(2000).style("width", function(d) {
-  return d * 10 + "px"; });
-barEnter.text(function(d) { return d; });
-bar.data(activity_header).append("p").attr("style", "float:none").text(function(d){
-  return d; });
+
+d3.csv("/static/hourly.csv", function(error, data) {
+    if (error) throw error;
+
+    data.forEach(function (d)  {
+	d.Activity = d.Activity; //?
+	d.t0 = +d.t0; //plus makes sure it's a number
+	d.t1 = +d.t1;
+	d.t2 = +d.t2;
+	d.t3 = +d.t3;
+	d.t4 = +d.t4;
+	d.t5 = +d.t5;
+	d.t6 = +d.t6;
+	d.t7 = +d.t7;
+	d.t8 = +d.t8;
+	d.t9 = +d.t9;
+	d.t10 = +d.t10;
+	d.t11 = +d.t11;
+	d.t12 = +d.t12;
+	d.t13 = +d.t13;
+	d.t14 = +d.t14;
+	d.t15 = +d.t15;
+	d.t16 = +d.t16;
+	d.t17 = +d.t17;
+	d.t18 = +d.t18;
+	d.t19 = +d.t19;
+	d.t20 = +d.t20;
+	d.t21 = +d.t21;
+	d.t22 = +d.t22;
+	d.t23 = +d.t23;
+    });
+    console.log(data);
+    console.log(data[0]["Activity"]); //this prints sleeping
+    //var chart = d3.select(".bar");
+    //var bar = chart.selectAll("div");
+    //var barUpdate = bar.data(data["Sleeping"]);
+    //var barEnter = barUpdate.enter().append("div");
+    var bars = svg.selectAll(".bar")
+	.data(data)
+	.enter()
+	.append("g");
+    bars.append("rect")
+	.attr("class", "bar")
+	.attr("y", function(d) {
+	    return 
+    barEnter.transition().duration(2000).style("width", function(d) {
+	return d * 10 + "px"; });
+    barEnter.text(function(d) { return d; });
+    bar.data(activity_header).append("p").attr("style", "float:none").text(function(d){
+	return d; });
 
 
+});
 
 
 
