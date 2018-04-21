@@ -151,7 +151,7 @@ d3.csv("/static/table2.csv", function(data) {
 	  .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")")
 	  .transition()
 	  .ease(d3.easeLinear)
-	  .duration(2000)
+	  .duration(1000)
 	  .attrTween("d", pieTween);
 
       text = pieSVG.selectAll("text")
