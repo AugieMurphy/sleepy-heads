@@ -55,7 +55,7 @@ d3.csv("/static/hourly.csv", function(error, data) {
     bars.append("rect")
 	.attr("class", "bar")
 	.attr("y", function(d) {
-	    return 
+	    return
     barEnter.transition().duration(2000).style("width", function(d) {
 	return d * 10 + "px"; });
     barEnter.text(function(d) { return d; });
@@ -63,7 +63,7 @@ d3.csv("/static/hourly.csv", function(error, data) {
 	return d; });
 
 
-});
+})});
 
 
 
