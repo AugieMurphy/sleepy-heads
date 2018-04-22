@@ -10,6 +10,9 @@ var getActivity = function(){
 
 /*======================BAR CHART======================*/
 
+
+var tx; //this must equal the time in the clock. e.g. if time == 10, then tx=d.t10
+var time = 0;
 var chart = d3.select(".bar_chart");
 var height = chart.node().getBoundingClientRect().height
 var width = chart.node().getBoundingClientRect().width
@@ -286,7 +289,7 @@ getTimes();
 
 var pi = Math.PI;
 
-var svg = body.append("svg")
+var svg = d3.select(".clock")
     .attr("width",500)
     .attr("height",500)
     .style("border-style","solid")

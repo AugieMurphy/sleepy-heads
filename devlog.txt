@@ -36,3 +36,11 @@ flask app creation and routing
 
 freudenbergJ -- 2018-04-17 17:48:32
 csv reading into js
+
+wuY + freudenbergJ -- 2018-04-20 13:00:00
+worked on styling
+
+freudenbergJ -- 2018-04-21 20:27:49
+added jumbotron
+got bar chart somewhat working
+added svg element for clock to reformat site
