@@ -51,7 +51,6 @@
 </div>
 </div>
 
-    <!--svg width = "900" height = "500" id = "svgfield"></svg!-->
     <div class="row">
       <div class="col">
         <svg width = "600" height = "500" class = "clock"> </svg>
@@ -59,6 +58,34 @@
       <div class="col">
         <svg width = "600" height = "400" class = "bar_chart"></svg>
         <p> Percentage of People doing each activity at the given time on the left </p>
+      </div>
+      <div class = "row">
+        <div class = "col">
+          <!-- insert activity select -->
+          <div class="form-group">
+            <label for="activity">Select Activity for Timeline</label>
+          <!-- <form> -->
+            <select multiple class="form-control" size="10" id="activity_select" onchange="updateTimeline()">
+              <option>PersonalCareAndSleep</option>
+              <option>Eating/Drinking</option>
+              <option>Household</option>
+              <option>Buying</option>
+              <option>CaringHousehold</option>
+              <option>CaringNonhousehold</option>
+              <option>Working</option>
+              <option>Education</option>
+              <option>OrganizationCivicReligious</option>
+              <option>Leisure/Sports</option>
+              <option>Communication</option>
+              <option>Other</option>
+            </select>
+          <!-- </form> -->
+          </div>
+        </div>
+        <div class = "col">
+          <svg width = "600" height = "500" class = "line_chart"> </svg>
+          <!-- insert timeline -->
+        </div>
       </div>
 
     <script src="../static/script.js"></script>

@@ -15,8 +15,8 @@ var getActivity = function(){
 var tx; //this must equal the time in the clock. e.g. if time == 10, then tx=d.t10
 var time = 0;
 var chart = d3.select(".bar_chart");
-var height = chart.node().getBoundingClientRect().height
-var width = chart.node().getBoundingClientRect().width
+var height = chart.node().getBoundingClientRect().height;
+var width = chart.node().getBoundingClientRect().width;
 chart = chart.attr("width", width).attr("height", height);
 var xAxis = d3.scaleLinear()
     .range([0, width]);
@@ -555,6 +555,8 @@ var tick = function(){
 	.attr("y2", Math.sin(2*(hr-15)*pi/60)*150 + 250);
 }
 
+setInterval(tick,1/10000);
+
 //var slider =
     //d3.slider();
     //.value(1000)
@@ -564,9 +566,44 @@ var tick = function(){
 
 /*========================  TIMELINE  ========================*/
 
+var line_chart = d3.select(".line_chart");
+var height = line_chart.node().getBoundingClientRect().height;
+var width = line_chart.node().getBoundingClientRect().width;
+line_chart = line_chart.attr("width", width)
+                       .attr("height", height);
+var g = line_chart.append("g");
+var yAxis = d3.scaleLinear()
+    .range([0, width]);
+
+var selectedActivity = "PersonalCareAndSleep";
+
+// console.log("code gets to this point")
+
+d3.csv("static/life.csv", function (error,data) {
+  if (error) throw error;
+  data.forEach(function(d) {
+    d.Activity = d.Activity;
+    d.a15to19 = +d.a15to19;
+    d.a20to24 = +d.a20to24;
+    d.a25to34 = +d.a25to34;
+    d.a35to44 = +d.a35to44;
+    d.a45to54 = +d.a45to54;
+    d.a55to64 = +d.a55to64;
+    d.a75 = +d.a75
+    return d;
+  })
+  yAxis.domain([0, 15]);
 
 
+  // g.append("g")
+  //  .attr("transform", "translate(0," + height + ")")
+  console.log("ho");
+  console.log(data);
+
+  g.append("path")
+            .data([data.selectedActivity])
+            .attr("class", "line");
+            // .attr("d", valueline);
 
 
-
-setInterval(tick,1/10000);
+});
