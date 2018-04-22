@@ -149,7 +149,7 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
 var inter = setInterval(function() {
           updateBar();
-        }, 1000);
+        }, 100);
 
 function updateBar() {
   console.log("Updatating bar chart...")
