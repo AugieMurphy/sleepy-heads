@@ -235,17 +235,24 @@ function updateBar() {
   });
   xAxis.domain([0, 1]);
   var barHeight = height / data.length;
+
   bar = chart.selectAll("g")
     .data(data)
     .attr("transform", function(d, i) {
       return "translate(0," + i * barHeight + ")"; });
+
   bar.selectAll("rect")
-     .attr("width", function(d) {
+     .style("width", function(d) {
+       console.log(curTime);
+       console.log(d.tx);
        return xAxis(d.tx); })
      .attr("height", barHeight - 1);
      // .transition().duration(1000);
+
+
   bar.selectAll("text")
-     .remove();
+     .remove(); //removes and then readds it below
+
   bar.append("text")
       .attr("x", function(d) {
         return xAxis(d.tx) + 40; })
