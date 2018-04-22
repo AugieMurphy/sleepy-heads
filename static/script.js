@@ -149,9 +149,15 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
     bar.append("text")
         .attr("x", function(d) {
-          return xAxis(d.tx) + 10; })
+          return xAxis(d.tx) + 40; })
         .attr("y", barHeight / 2)
         .text(function(d) { return d.Activity; });
+
+    bar.append("text")
+        .attr("x", function(d) {
+          return xAxis(d.tx); })
+        .attr("y", barHeight / 2)
+        .text(function(d) { return d.tx * 100; });
 
 
       // .transition().duration(2000)
@@ -166,7 +172,7 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
 var inter = setInterval(function() {
           updateBar();
-        }, 5000);
+        }, 1000);
 
 function updateBar() {
   console.log("Updatating bar chart...")
@@ -260,36 +266,20 @@ function updateBar() {
   bar.selectAll("rect")
      .attr("width", function(d) {
        return xAxis(d.tx); })
-     .transition().duration(2000);
+     .transition().duration(1000);
+  bar.selectAll("text")
+     .remove();
+  bar.append("text")
+      .attr("x", function(d) {
+        return xAxis(d.tx) + 40; })
+      .attr("y", barHeight / 2)
+      .text(function(d) { return d.Activity; });
 
-       // .duration(750)
-       // .attr("width", function(d) {
-       //   return xAxis(d.tx); });
-       // activity = document.getElementById("activity").value;
-       // path = pieSVG.selectAll("path")
-       // .data(pie(dataset))
-       // .attr("d", arc)
-       // .attr("fill", function(d, i) {
-       //
-       //   if( i  == 0 ){ return "lightgreen"; }
-       //   else if( i == 1 ){ return "lightsteelblue"; }
-       //   else if( i == 2 ){ return "red"; }
-       //   else if( i == 3 ){ return "green"; }
-       //   else if( i == 4 ){ return "maroon"; }
-       //   else if( i == 5 ){ return "orange"; }
-       //   else if( i == 6 ){ return "steelblue"; }
-       //   else if( i == 7 ){ return "purple"; }
-       //   else if( i == 8 ){ return "goldenrod"; }
-       //   else if( i == 9 ){ return "blue"; }
-       //   else if( i == 10 ){ return "cyan"; }
-       //   else if( i == 11 ){ return "navy"; }
-       //
-       // })
-       // .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")")
-       // .transition()
-       // .ease(d3.easeLinear)
-       // .duration(2000)
-       // .attrTween("d", pieTween);
+  bar.append("text")
+      .attr("x", function(d) {
+        return xAxis(d.tx); })
+      .attr("y", barHeight / 2)
+      .text(function(d) { return d.tx * 100; });
 
 
 });
