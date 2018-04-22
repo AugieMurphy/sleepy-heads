@@ -241,13 +241,20 @@ function updateBar() {
     .attr("transform", function(d, i) {
       return "translate(0," + i * barHeight + ")"; });
 
-  bar.selectAll("rect")
-     .style("width", function(d) {
-       console.log(curTime);
-       console.log(d.tx);
-       return xAxis(d.tx); })
-     .attr("height", barHeight - 1);
+  // bar.selectAll("rect")
+  //    .style("width", function(d) {
+  //      console.log(curTime);
+  //      console.log(d.tx);
+  //      return xAxis(d.tx); })
+  //    .attr("height", barHeight - 1);
      // .transition().duration(1000);
+
+     bar.selectAll("rect").remove();
+
+     bar.append("rect")
+         .attr("width", function(d) {
+           return xAxis(d.tx); })
+         .attr("height", barHeight - 1);
 
 
   bar.selectAll("text")

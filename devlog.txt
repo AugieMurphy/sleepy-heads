@@ -48,3 +48,6 @@ added svg element for clock to reformat site
 freudenbergJ -- 2018-04-22 13:01:04
 matched bar chart values with time shown on clock (width not working)
 updated readme to more accurately reflect the project
+
+freudenbergJ -- 2018-04-22 13:50:00
+got bar chart to work by and removing adding again (not ideal)
