@@ -20,6 +20,7 @@ var width = chart.node().getBoundingClientRect().width
 chart = chart.attr("width", width).attr("height", height);
 var xAxis = d3.scaleLinear()
     .range([0, width]);
+var bar;
 
 d3.csv("/static/hourly.csv", function(error, data) {
     if (error) throw error;
@@ -134,7 +135,7 @@ d3.csv("/static/hourly.csv", function(error, data) {
       return d.tx; })]);
     var barHeight = height / data.length;
 
-    var bar = chart.selectAll("g")
+    bar = chart.selectAll("g")
       .data(data)
       .enter()
       .append("g")
@@ -161,7 +162,138 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
 
 
+}); //end of d3.csv
+
+var inter = setInterval(function() {
+          updateBar();
+        }, 5000);
+
+function updateBar() {
+  console.log("Updatating bar chart...")
+  d3.csv("/static/hourly.csv", function(error, data) {
+      if (error) throw error;
+
+  data.forEach(function (d)  {
+  	d.Activity = d.Activity; //?
+    switch (curTime) {
+      case 0:
+        d.tx = +d.t0;
+        break;
+      case 1:
+        d.tx = +d.t1;
+        break;
+      case 2:
+        d.tx = +d.t2;
+        break;
+      case 3:
+        d.tx = +d.t3;
+        break;
+      case 4:
+        d.tx = +d.t4;
+        break;
+      case 5:
+        d.tx = +d.t5;
+        break;
+      case 6:
+        d.tx = +d.t6;
+        break;
+      case 7:
+        d.tx = +d.t7;
+        break;
+      case 8:
+        d.tx = +d.t8;
+        break;
+      case 9:
+        d.tx = +d.t9;
+        break;
+      case 10:
+        d.tx = +d.t10;
+        break;
+      case 11:
+        d.tx = +d.t11;
+        break;
+      case 12:
+        d.tx = +d.t12;
+        break;
+      case 13:
+        d.tx = +d.t13;
+        break;
+      case 14:
+        d.tx = +d.t14;
+        break;
+      case 15:
+        d.tx = +d.t15;
+        break;
+      case 16:
+        d.tx = +d.t16;
+        break;
+      case 17:
+        d.tx = +d.t17;
+        break;
+      case 18:
+        d.tx = +d.t18;
+        break;
+      case 19:
+        d.tx = +d.t19;
+        break;
+      case 20:
+        d.tx = +d.t20;
+        break;
+      case 21:
+        d.tx = +d.t21;
+        break;
+      case 22:
+        d.tx = +d.t22;
+        break;
+      case 23:
+        d.tx = +d.t23;
+    }
+    return d;
+  });
+  xAxis.domain([0, d3.max(data, function(d) {
+    return d.tx; })]);
+  var barHeight = height / data.length;
+  bar = chart.selectAll("g")
+    .data(data)
+    .attr("transform", function(d, i) {
+      return "translate(0," + i * barHeight + ")"; });
+  bar.selectAll("rect")
+     .attr("width", function(d) {
+       return xAxis(d.tx); })
+     .transition().duration(2000);
+
+       // .duration(750)
+       // .attr("width", function(d) {
+       //   return xAxis(d.tx); });
+       // activity = document.getElementById("activity").value;
+       // path = pieSVG.selectAll("path")
+       // .data(pie(dataset))
+       // .attr("d", arc)
+       // .attr("fill", function(d, i) {
+       //
+       //   if( i  == 0 ){ return "lightgreen"; }
+       //   else if( i == 1 ){ return "lightsteelblue"; }
+       //   else if( i == 2 ){ return "red"; }
+       //   else if( i == 3 ){ return "green"; }
+       //   else if( i == 4 ){ return "maroon"; }
+       //   else if( i == 5 ){ return "orange"; }
+       //   else if( i == 6 ){ return "steelblue"; }
+       //   else if( i == 7 ){ return "purple"; }
+       //   else if( i == 8 ){ return "goldenrod"; }
+       //   else if( i == 9 ){ return "blue"; }
+       //   else if( i == 10 ){ return "cyan"; }
+       //   else if( i == 11 ){ return "navy"; }
+       //
+       // })
+       // .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")")
+       // .transition()
+       // .ease(d3.easeLinear)
+       // .duration(2000)
+       // .attrTween("d", pieTween);
+
+
 });
+}
 
 
 
