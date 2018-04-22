@@ -9,8 +9,13 @@ var getActivity = function(){
 }
 
 /*======================BAR CHART======================*/
-var activity_header = []
-var activity_time = []
+
+var chart = d3.select(".bar_chart");
+var height = chart.node().getBoundingClientRect().height
+var width = chart.node().getBoundingClientRect().width
+chart = chart.attr("width", width).attr("height", height);
+var xAxis = d3.scaleLinear()
+    .range([0, width]);
 
 d3.csv("/static/hourly.csv", function(error, data) {
     if (error) throw error;
@@ -41,29 +46,55 @@ d3.csv("/static/hourly.csv", function(error, data) {
 	d.t21 = +d.t21;
 	d.t22 = +d.t22;
 	d.t23 = +d.t23;
+  return d;
     });
     console.log(data);
     console.log(data[0]["Activity"]); //this prints sleeping
-    //var chart = d3.select(".bar");
-    //var bar = chart.selectAll("div");
-    //var barUpdate = bar.data(data["Sleeping"]);
-    //var barEnter = barUpdate.enter().append("div");
-    var bars = svg.selectAll(".bar")
-	.data(data)
-	.enter()
-	.append("g");
-    bars.append("rect")
-	.attr("class", "bar")
-	.attr("y", function(d) {
-	    return
-    barEnter.transition().duration(2000).style("width", function(d) {
-	return d * 10 + "px"; });
-    barEnter.text(function(d) { return d; });
-    bar.data(activity_header).append("p").attr("style", "float:none").text(function(d){
-	return d; });
+
+    xAxis.domain([0, d3.max(data, function(d) {
+      return d.t0; })]);
+    var barHeight = height / data.length;
+
+    var bar = chart.selectAll("g")
+      .data(data)
+      .enter()
+      .append("g")
+      .attr("transform", function(d, i) {
+        return "translate(0," + i * barHeight + ")"; });
+
+    bar.append("rect")
+        .attr("width", function(d) {
+          return xAxis(d.t0); })
+        .attr("height", barHeight - 1);
 
 
-})});
+      // .transition().duration(2000)
+      // .style("width", function(d) {
+      //   return d * 10 + "px"; })
+      // .attr("transform", function(d, i) {
+      //   return "translate(0," + i * barHeight + ")"; });
+
+
+
+
+
+
+
+    // var bars = d3.select(".chart").selectAll("div")
+	  //  .data(data)
+	  //  .enter()
+	  //  .append("div");
+    // bars.append("rect")
+	  //  .attr("class", "bar")
+	  //  .attr("y", function(d) {
+	  //   return
+    // }
+
+  //   bar.data(activity_header).append("p").attr("style", "float:none").text(function(d){
+	// return d; });
+
+
+});
 
 
 
