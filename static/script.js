@@ -27,30 +27,6 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
     data.forEach(function (d)  {
 	d.Activity = d.Activity; //?
-	// d.t0 = +d.t0; //plus makes sure it's a number
-	// d.t1 = +d.t1;
-	// d.t2 = +d.t2;
-	// d.t3 = +d.t3;
-	// d.t4 = +d.t4;
-	// d.t5 = +d.t5;
-	// d.t6 = +d.t6;
-	// d.t7 = +d.t7;
-	// d.t8 = +d.t8;
-	// d.t9 = +d.t9;
-	// d.t10 = +d.t10;
-	// d.t11 = +d.t11;
-	// d.t12 = +d.t12;
-	// d.t13 = +d.t13;
-	// d.t14 = +d.t14;
-	// d.t15 = +d.t15;
-	// d.t16 = +d.t16;
-	// d.t17 = +d.t17;
-	// d.t18 = +d.t18;
-	// d.t19 = +d.t19;
-	// d.t20 = +d.t20;
-	// d.t21 = +d.t21;
-	// d.t22 = +d.t22;
-	// d.t23 = +d.t23;
   switch (curTime) {
     case 0:
       d.tx = +d.t0;
@@ -131,8 +107,9 @@ d3.csv("/static/hourly.csv", function(error, data) {
     console.log(data);
     console.log(data[0]["Activity"]); //this prints sleeping
 
-    xAxis.domain([0, d3.max(data, function(d) {
-      return d.tx; })]);
+    // xAxis.domain([0, d3.max(data, function(d) {
+    //   return d.tx; })]);
+    xAxis.domain([0, 1]);
     var barHeight = height / data.length;
 
     bar = chart.selectAll("g")
@@ -256,8 +233,7 @@ function updateBar() {
     }
     return d;
   });
-  xAxis.domain([0, d3.max(data, function(d) {
-    return d.tx; })]);
+  xAxis.domain([0, 1]);
   var barHeight = height / data.length;
   bar = chart.selectAll("g")
     .data(data)
@@ -266,7 +242,8 @@ function updateBar() {
   bar.selectAll("rect")
      .attr("width", function(d) {
        return xAxis(d.tx); })
-     .transition().duration(1000);
+     .attr("height", barHeight - 1);
+     // .transition().duration(1000);
   bar.selectAll("text")
      .remove();
   bar.append("text")
@@ -570,6 +547,12 @@ var tick = function(){
     //.on("slide", function(evt, value){
 	//setInterval(tick, value);
     //});
+
+/*========================  TIMELINE  ========================*/
+
+
+
+
 
 
 setInterval(tick,1/10000);
