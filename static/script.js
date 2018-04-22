@@ -49,13 +49,14 @@ d3.csv("/static/hourly.csv", function(error, data) {
 	d.t21 = +d.t21;
 	d.t22 = +d.t22;
 	d.t23 = +d.t23;
+  d.tx = +d.t0
   return d;
     });
     console.log(data);
     console.log(data[0]["Activity"]); //this prints sleeping
 
     xAxis.domain([0, d3.max(data, function(d) {
-      return d.t0; })]);
+      return d.tx; })]);
     var barHeight = height / data.length;
 
     var bar = chart.selectAll("g")
@@ -67,8 +68,14 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
     bar.append("rect")
         .attr("width", function(d) {
-          return xAxis(d.t0); })
+          return xAxis(d.tx); })
         .attr("height", barHeight - 1);
+
+    bar.append("text")
+        .attr("x", function(d) {
+          return xAxis(d.tx) + 10; })
+        .attr("y", barHeight / 2)
+        .text(function(d) { return d.Activity; });
 
 
       // .transition().duration(2000)
@@ -77,24 +84,6 @@ d3.csv("/static/hourly.csv", function(error, data) {
       // .attr("transform", function(d, i) {
       //   return "translate(0," + i * barHeight + ")"; });
 
-
-
-
-
-
-
-    // var bars = d3.select(".chart").selectAll("div")
-	  //  .data(data)
-	  //  .enter()
-	  //  .append("div");
-    // bars.append("rect")
-	  //  .attr("class", "bar")
-	  //  .attr("y", function(d) {
-	  //   return
-    // }
-
-  //   bar.data(activity_header).append("p").attr("style", "float:none").text(function(d){
-	// return d; });
 
 
 });
