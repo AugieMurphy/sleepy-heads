@@ -6,9 +6,6 @@
     margin: 1px;
     color: navy;
   }
-  p {
-    font-weight: bold;
-  }
 div {
   padding-left: 10px;
 }
@@ -33,6 +30,14 @@ body {
 
 rect {
   fill: steelblue;
+}
+
+p {
+  text-indent: 20px;
+  line-height: 1.5;
+  letter-spacing: .25px;
+  font-family: 	Courier;
+  font-weight: bold;
 }
 
 h1 {
