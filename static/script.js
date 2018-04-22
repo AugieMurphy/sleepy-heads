@@ -1,4 +1,5 @@
 var body = d3.select("body");
+var curTime = 0;
 
 /*========================SELECT CHART========================*/
 
@@ -25,31 +26,105 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
     data.forEach(function (d)  {
 	d.Activity = d.Activity; //?
-	d.t0 = +d.t0; //plus makes sure it's a number
-	d.t1 = +d.t1;
-	d.t2 = +d.t2;
-	d.t3 = +d.t3;
-	d.t4 = +d.t4;
-	d.t5 = +d.t5;
-	d.t6 = +d.t6;
-	d.t7 = +d.t7;
-	d.t8 = +d.t8;
-	d.t9 = +d.t9;
-	d.t10 = +d.t10;
-	d.t11 = +d.t11;
-	d.t12 = +d.t12;
-	d.t13 = +d.t13;
-	d.t14 = +d.t14;
-	d.t15 = +d.t15;
-	d.t16 = +d.t16;
-	d.t17 = +d.t17;
-	d.t18 = +d.t18;
-	d.t19 = +d.t19;
-	d.t20 = +d.t20;
-	d.t21 = +d.t21;
-	d.t22 = +d.t22;
-	d.t23 = +d.t23;
-  d.tx = +d.t0
+	// d.t0 = +d.t0; //plus makes sure it's a number
+	// d.t1 = +d.t1;
+	// d.t2 = +d.t2;
+	// d.t3 = +d.t3;
+	// d.t4 = +d.t4;
+	// d.t5 = +d.t5;
+	// d.t6 = +d.t6;
+	// d.t7 = +d.t7;
+	// d.t8 = +d.t8;
+	// d.t9 = +d.t9;
+	// d.t10 = +d.t10;
+	// d.t11 = +d.t11;
+	// d.t12 = +d.t12;
+	// d.t13 = +d.t13;
+	// d.t14 = +d.t14;
+	// d.t15 = +d.t15;
+	// d.t16 = +d.t16;
+	// d.t17 = +d.t17;
+	// d.t18 = +d.t18;
+	// d.t19 = +d.t19;
+	// d.t20 = +d.t20;
+	// d.t21 = +d.t21;
+	// d.t22 = +d.t22;
+	// d.t23 = +d.t23;
+  switch (curTime) {
+    case 0:
+      d.tx = +d.t0;
+      break;
+    case 1:
+      d.tx = +d.t1;
+      break;
+    case 2:
+      d.tx = +d.t2;
+      break;
+    case 3:
+      d.tx = +d.t3;
+      break;
+    case 4:
+      d.tx = +d.t4;
+      break;
+    case 5:
+      d.tx = +d.t5;
+      break;
+    case 6:
+      d.tx = +d.t6;
+      break;
+    case 7:
+      d.tx = +d.t7;
+      break;
+    case 8:
+      d.tx = +d.t8;
+      break;
+    case 9:
+      d.tx = +d.t9;
+      break;
+    case 10:
+      d.tx = +d.t10;
+      break;
+    case 11:
+      d.tx = +d.t11;
+      break;
+    case 12:
+      d.tx = +d.t12;
+      break;
+    case 13:
+      d.tx = +d.t13;
+      break;
+    case 14:
+      d.tx = +d.t14;
+      break;
+    case 15:
+      d.tx = +d.t15;
+      break;
+    case 16:
+      d.tx = +d.t16;
+      break;
+    case 17:
+      d.tx = +d.t17;
+      break;
+    case 18:
+      d.tx = +d.t18;
+      break;
+    case 19:
+      d.tx = +d.t19;
+      break;
+    case 20:
+      d.tx = +d.t20;
+      break;
+    case 21:
+      d.tx = +d.t21;
+      break;
+    case 22:
+      d.tx = +d.t22;
+      break;
+    case 23:
+      d.tx = +d.t23;
+    }
+  console.log("does this work");
+  console.log(curTime);
   return d;
     });
     console.log(data);
@@ -271,6 +346,9 @@ var getTimes = function(){
 	min = 0;
 	sec = 0;
 	hr += 1;
+  curTime = (curTime + 1) % 24
+  console.log("Current hour:");
+  console.log(curTime);
     }
 }
 
