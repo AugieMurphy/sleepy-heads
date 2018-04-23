@@ -623,13 +623,13 @@ d3.csv("static/life.csv", function (error,data) {
     tdata = [d.a15to19, d.a20to24, d.a25to34, d.a35to44, d.a45to54, d.a55to64, d.a75]
   }
   g.append("path")
-    .data(tdata)
+    .data(data)
     .attr("class", "line")
     .attr("d", valueline);
   svg.append("g")
      .attr("transform", "translate(0," + height + ")")
-     .call(d3.axisBottom(x));
+     .call(d3.axisBottom(xAxis));
  svg.append("g")
-    .call(d3.axisLeft(y));
+    .call(d3.axisLeft(yAxis));
 
 });

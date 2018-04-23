@@ -51,8 +51,19 @@ h6 {
   font-size: 8px;
 }
 
+#second {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background:linear-gradient(rgba(0, 0, 250, 0.25), rgba(125, 250, 250, 0.45)),
+  url("../images/white.png");
+  background-color; green;
+  color:black !important;
+}
 
-.jumbotron{
+
+#first{
     border: 5px solid silver;
     border-radius:10px;
     background:linear-gradient(rgba(0, 0, 250, 0.25), rgba(125, 250, 250, 0.45)),
