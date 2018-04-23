@@ -414,9 +414,9 @@ d3.csv("/static/table2.csv", function(data) {
 	    else if( activity == "avg_weekend" ){
 		tooltip.select('.hour').html(d.data.avg_weekend + ' hour');}
 	    else if( activity == "percent_weekly" ){
-		tooltip.select('.hour').html(d.data.percent_weekly + ' hour'); }
+		tooltip.select('.hour').html(d.data.percent_weekly + ' %'); }
 	    else if( activity == "percent_weekend" ){
-		tooltip.select('.hour').html(d.data.percent_weekend + ' hour'); }
+		tooltip.select('.hour').html(d.data.percent_weekend + ' %'); }
 	    else if( activity == "pro_weekly" ){
 		tooltip.select('.hour').html(d.data.pro_weekly + ' hour'); }
 	    else if( activity == "pro_weekend" ){
@@ -430,6 +430,11 @@ d3.csv("/static/table2.csv", function(data) {
 	    tooltip.style("top", (d3.event.layerY + 10) + "px")
 		.style("left", (d3.event.layerX - 25) + "px");
 	});
+
+	path.on('mouseout', function() {
+			tooltip.style('display', 'none');
+			tooltip.style('opacity',0);
+		});
 	
 
 	
