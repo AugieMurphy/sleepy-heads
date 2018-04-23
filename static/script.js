@@ -27,82 +27,82 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
     data.forEach(function (d)  {
 	d.Activity = d.Activity; //?
-  switch (curTime) {
-    case 0:
-      d.tx = +d.t0;
-      break;
-    case 1:
-      d.tx = +d.t1;
-      break;
-    case 2:
-      d.tx = +d.t2;
-      break;
-    case 3:
-      d.tx = +d.t3;
-      break;
-    case 4:
-      d.tx = +d.t4;
-      break;
-    case 5:
-      d.tx = +d.t5;
-      break;
-    case 6:
-      d.tx = +d.t6;
-      break;
-    case 7:
-      d.tx = +d.t7;
-      break;
-    case 8:
-      d.tx = +d.t8;
-      break;
-    case 9:
-      d.tx = +d.t9;
-      break;
-    case 10:
-      d.tx = +d.t10;
-      break;
-    case 11:
-      d.tx = +d.t11;
-      break;
-    case 12:
-      d.tx = +d.t12;
-      break;
-    case 13:
-      d.tx = +d.t13;
-      break;
-    case 14:
-      d.tx = +d.t14;
-      break;
-    case 15:
-      d.tx = +d.t15;
-      break;
-    case 16:
-      d.tx = +d.t16;
-      break;
-    case 17:
-      d.tx = +d.t17;
-      break;
-    case 18:
-      d.tx = +d.t18;
-      break;
-    case 19:
-      d.tx = +d.t19;
-      break;
-    case 20:
-      d.tx = +d.t20;
-      break;
-    case 21:
-      d.tx = +d.t21;
-      break;
-    case 22:
-      d.tx = +d.t22;
-      break;
-    case 23:
-      d.tx = +d.t23;
-    }
-  console.log("does this work");
-  console.log(curTime);
-  return d;
+	switch (curTime) {
+	case 0:
+	    d.tx = +d.t0;
+	    break;
+	case 1:
+	    d.tx = +d.t1;
+	    break;
+	case 2:
+	    d.tx = +d.t2;
+	    break;
+	case 3:
+	    d.tx = +d.t3;
+	    break;
+	case 4:
+	    d.tx = +d.t4;
+	    break;
+	case 5:
+	    d.tx = +d.t5;
+	    break;
+	case 6:
+	    d.tx = +d.t6;
+	    break;
+	case 7:
+	    d.tx = +d.t7;
+	    break;
+	case 8:
+	    d.tx = +d.t8;
+	    break;
+	case 9:
+	    d.tx = +d.t9;
+	    break;
+	case 10:
+	    d.tx = +d.t10;
+	    break;
+	case 11:
+	    d.tx = +d.t11;
+	    break;
+	case 12:
+	    d.tx = +d.t12;
+	    break;
+	case 13:
+	    d.tx = +d.t13;
+	    break;
+	case 14:
+	    d.tx = +d.t14;
+	    break;
+	case 15:
+	    d.tx = +d.t15;
+	    break;
+	case 16:
+	    d.tx = +d.t16;
+	    break;
+	case 17:
+	    d.tx = +d.t17;
+	    break;
+	case 18:
+	    d.tx = +d.t18;
+	    break;
+	case 19:
+	    d.tx = +d.t19;
+	    break;
+	case 20:
+	    d.tx = +d.t20;
+	    break;
+	case 21:
+	    d.tx = +d.t21;
+	    break;
+	case 22:
+	    d.tx = +d.t22;
+	    break;
+	case 23:
+	    d.tx = +d.t23;
+	}
+	console.log("does this work");
+	console.log(curTime);
+	return d;
     });
     console.log(data);
     console.log(data[0]["Activity"]); //this prints sleeping
@@ -113,175 +113,182 @@ d3.csv("/static/hourly.csv", function(error, data) {
     var barHeight = height / data.length;
 
     bar = chart.selectAll("g")
-      .data(data)
-      .enter()
-      .append("g")
-      .attr("transform", function(d, i) {
-        return "translate(0," + i * barHeight + ")"; });
+	.data(data)
+	.enter()
+	.append("g")
+	.attr("transform", function(d, i) {
+            return "translate(0," + i * barHeight + ")"; });
 
     bar.append("rect")
         .attr("width", function(d) {
-          return xAxis(d.tx); })
+            return xAxis(d.tx); })
         .attr("height", barHeight - 1);
 
     bar.append("text")
         .attr("x", function(d) {
-          return xAxis(d.tx) + 40; })
+            return xAxis(d.tx) + 40; })
         .attr("y", barHeight / 2)
         .text(function(d) { return d.Activity; });
 
     bar.append("text")
         .attr("x", function(d) {
-          return xAxis(d.tx); })
+            return xAxis(d.tx); })
         .attr("y", barHeight / 2)
         .text(function(d) { return d.tx * 100; });
 
 
-      // .transition().duration(2000)
-      // .style("width", function(d) {
-      //   return d * 10 + "px"; })
-      // .attr("transform", function(d, i) {
-      //   return "translate(0," + i * barHeight + ")"; });
+    // .transition().duration(2000)
+    // .style("width", function(d) {
+    //   return d * 10 + "px"; })
+    // .attr("transform", function(d, i) {
+    //   return "translate(0," + i * barHeight + ")"; });
 
 
 
 }); //end of d3.csv
 
 var inter = setInterval(function() {
-          updateBar();
-        }, 100);
+    updateBar();
+}, 100);
 
 function updateBar() {
-  console.log("Updatating bar chart...")
-  d3.csv("/static/hourly.csv", function(error, data) {
-      if (error) throw error;
+    console.log("Updatating bar chart...")
+    d3.csv("/static/hourly.csv", function(error, data) {
+	if (error) throw error;
 
-  data.forEach(function (d)  {
-  	d.Activity = d.Activity; //?
-    switch (curTime) {
-      case 0:
-        d.tx = +d.t0;
-        break;
-      case 1:
-        d.tx = +d.t1;
-        break;
-      case 2:
-        d.tx = +d.t2;
-        break;
-      case 3:
-        d.tx = +d.t3;
-        break;
-      case 4:
-        d.tx = +d.t4;
-        break;
-      case 5:
-        d.tx = +d.t5;
-        break;
-      case 6:
-        d.tx = +d.t6;
-        break;
-      case 7:
-        d.tx = +d.t7;
-        break;
-      case 8:
-        d.tx = +d.t8;
-        break;
-      case 9:
-        d.tx = +d.t9;
-        break;
-      case 10:
-        d.tx = +d.t10;
-        break;
-      case 11:
-        d.tx = +d.t11;
-        break;
-      case 12:
-        d.tx = +d.t12;
-        break;
-      case 13:
-        d.tx = +d.t13;
-        break;
-      case 14:
-        d.tx = +d.t14;
-        break;
-      case 15:
-        d.tx = +d.t15;
-        break;
-      case 16:
-        d.tx = +d.t16;
-        break;
-      case 17:
-        d.tx = +d.t17;
-        break;
-      case 18:
-        d.tx = +d.t18;
-        break;
-      case 19:
-        d.tx = +d.t19;
-        break;
-      case 20:
-        d.tx = +d.t20;
-        break;
-      case 21:
-        d.tx = +d.t21;
-        break;
-      case 22:
-        d.tx = +d.t22;
-        break;
-      case 23:
-        d.tx = +d.t23;
-    }
-    return d;
-  });
-  xAxis.domain([0, 1]);
-  var barHeight = height / data.length;
+	data.forEach(function (d)  {
+  	    d.Activity = d.Activity; //?
+	    switch (curTime) {
+	    case 0:
+		d.tx = +d.t0;
+		break;
+	    case 1:
+		d.tx = +d.t1;
+		break;
+	    case 2:
+		d.tx = +d.t2;
+		break;
+	    case 3:
+		d.tx = +d.t3;
+		break;
+	    case 4:
+		d.tx = +d.t4;
+		break;
+	    case 5:
+		d.tx = +d.t5;
+		break;
+	    case 6:
+		d.tx = +d.t6;
+		break;
+	    case 7:
+		d.tx = +d.t7;
+		break;
+	    case 8:
+		d.tx = +d.t8;
+		break;
+	    case 9:
+		d.tx = +d.t9;
+		break;
+	    case 10:
+		d.tx = +d.t10;
+		break;
+	    case 11:
+		d.tx = +d.t11;
+		break;
+	    case 12:
+		d.tx = +d.t12;
+		break;
+	    case 13:
+		d.tx = +d.t13;
+		break;
+	    case 14:
+		d.tx = +d.t14;
+		break;
+	    case 15:
+		d.tx = +d.t15;
+		break;
+	    case 16:
+		d.tx = +d.t16;
+		break;
+	    case 17:
+		d.tx = +d.t17;
+		break;
+	    case 18:
+		d.tx = +d.t18;
+		break;
+	    case 19:
+		d.tx = +d.t19;
+		break;
+	    case 20:
+		d.tx = +d.t20;
+		break;
+	    case 21:
+		d.tx = +d.t21;
+		break;
+	    case 22:
+		d.tx = +d.t22;
+		break;
+	    case 23:
+		d.tx = +d.t23;
+	    }
+	    return d;
+	});
+	xAxis.domain([0, 1]);
+	var barHeight = height / data.length;
 
-  bar = chart.selectAll("g")
-    .data(data)
-    .attr("transform", function(d, i) {
-      return "translate(0," + i * barHeight + ")"; });
+	bar = chart.selectAll("g")
+	    .data(data)
+	    .attr("transform", function(d, i) {
+		return "translate(0," + i * barHeight + ")"; });
 
-  // bar.selectAll("rect")
-  //    .style("width", function(d) {
-  //      console.log(curTime);
-  //      console.log(d.tx);
-  //      return xAxis(d.tx); })
-  //    .attr("height", barHeight - 1);
-     // .transition().duration(1000);
+	// bar.selectAll("rect")
+	//    .style("width", function(d) {
+	//      console.log(curTime);
+	//      console.log(d.tx);
+	//      return xAxis(d.tx); })
+	//    .attr("height", barHeight - 1);
+	// .transition().duration(1000);
 
-     bar.selectAll("rect").remove();
+	bar.selectAll("rect").remove();
 
-     bar.append("rect")
-         .attr("width", function(d) {
-           return xAxis(d.tx); })
-         .attr("height", barHeight - 1);
-
-
-  bar.selectAll("text")
-     .remove(); //removes and then readds it below
-
-  bar.append("text")
-      .attr("x", function(d) {
-        return xAxis(d.tx) + 40; })
-      .attr("y", barHeight / 2)
-      .text(function(d) { return d.Activity; });
-
-  bar.append("text")
-      .attr("x", function(d) {
-        return xAxis(d.tx); })
-      .attr("y", barHeight / 2)
-      .text(function(d) { return d.tx * 100; });
+	bar.append("rect")
+            .attr("width", function(d) {
+		return xAxis(d.tx); })
+            .attr("height", barHeight - 1);
 
 
-});
+	bar.selectAll("text")
+	    .remove(); //removes and then readds it below
+
+	bar.append("text")
+	    .attr("x", function(d) {
+		return xAxis(d.tx) + 40; })
+	    .attr("y", barHeight / 2)
+	    .text(function(d) { return d.Activity; });
+
+	bar.append("text")
+	    .attr("x", function(d) {
+		return xAxis(d.tx); })
+	    .attr("y", barHeight / 2)
+	    .text(function(d) { return d.tx * 100; });
+
+
+    });
 }
 
 
 
 /*========================PIE CHART========================*/
 var dataset = [];
-var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other, pieSVG, arc, pie, path,text;
+var sleeping, ingestion, household, buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other, pieSVG, arc, pie, path,tooltip, legend;
 var init, update;
+
+var legendRectSize = 18;
+var legendSpacing = 4;
+var colorScheme = ["lightgreen", "lightsteelblue", "red", "green", "maroon", "orange", "steelblue", "purple", "goldenrod", "blue", "cyan", "navy"];
+
+var color = d3.scaleOrdinal()
+	.range(colorScheme);
 
 d3.csv("/static/table2.csv", function(data) {
     sleeping = data[0];
@@ -296,15 +303,15 @@ d3.csv("/static/table2.csv", function(data) {
     leisuresports = data[9];
     social = data[10];
     other = data[11];
-    //console.log(sleeping["avg_weekly"]);
     dataset = [sleeping,ingestion,household,buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other];
 
+    console.log(dataset);
 
-//var dataset = [sleeping,ingestion,household,buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other];
+    //var dataset = [sleeping,ingestion,household,buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other];
 
 
-// d3.csv("https://gist.githubusercontent.com/d3noob/fa0f16e271cb191ae85f/raw/bf896176236341f56a55b36c8fc40e32c73051ad/treedata.csv", function(data){
-//     console.log(data);
+    // d3.csv("https://gist.githubusercontent.com/d3noob/fa0f16e271cb191ae85f/raw/bf896176236341f56a55b36c8fc40e32c73051ad/treedata.csv", function(data){
+    //     console.log(data);
     // });
 
 
@@ -312,6 +319,7 @@ d3.csv("/static/table2.csv", function(data) {
     var height = 500;
     var width = 500;
     var radius = height / 2;
+
 
 
     pieSVG.attr("width", width)
@@ -322,76 +330,110 @@ d3.csv("/static/table2.csv", function(data) {
 	.attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
 
     arc = d3.arc()
-	.innerRadius(100)
+	.innerRadius(200)
 	.outerRadius(radius);
-	pie = d3.pie();
+
+    pie = d3.pie();
+
+    tooltip = d3.select("#chart")
+	.append("div")
+	.attr("class", "tooltip");
+
+    tooltip.append("div")
+	.attr("class", "label");
+
+    tooltip.append("div")
+	.attr("class", "hour");
+
+    legend = svg.selectAll('.legend')
+	.data(color.domain())
+	.enter()
+	.append('g')
+	.attr('class', 'legend')
+	.attr('transform', function(d, i) {
+	    var height = legendRectSize + legendSpacing;
+	    var offset =  height * color.domain().length / 2;
+	    var horz = -2 * legendRectSize;
+	    var vert = i * height - offset;
+	    return 'translate(' + horz + ',' + vert + ')';
+	});
+
+    legend.append('rect')
+	.attr('width', legendRectSize)
+	.attr('height', legendRectSize)
+	.style('fill', color)
+	.style('stroke', color);
+
+    legend.append('text')
+	.attr('x', legendRectSize + legendSpacing)
+	.attr('y', legendRectSize - legendSpacing)
+	.text(function(d) { return d; })
 
 
-  init = function(){
-    //activity = document.getElementById("activity").value;
-    console.log(activity);
+    init = function(){
+	//activity = document.getElementById("activity").value;
+	console.log("testing = " + activity);
 	pie.value( function(d){
-		if( activity == "avg_weekly" ){ console.log(d.avg_weekly); return d.avg_weekly; }
-		else if( activity == "avg_weekend" ){ console.log(d.avg_weekend); return d.avg_weekend; }
-		else if( activity == "percent_weekly" ){ return d.percent_weekly; }
-		else if( activity == "percent_weekend" ){ return d.percent_weekend; }
-		else if( activity == "pro_weekly" ){ return d.pro_weekly; }
-		else if( activity == "pro_weekend" ){ return d.pro_weekend; }
+	    if( activity == "avg_weekly" ){ console.log(d.avg_weekly); return d.avg_weekly; }
+	    else if( activity == "avg_weekend" ){ console.log(d.avg_weekend); return d.avg_weekend; }
+	    else if( activity == "percent_weekly" ){ return d.percent_weekly; }
+	    else if( activity == "percent_weekend" ){ return d.percent_weekend; }
+	    else if( activity == "pro_weekly" ){ return d.pro_weekly; }
+	    else if( activity == "pro_weekend" ){ return d.pro_weekend; }
 
-  });
+	});
 
-      path = pieSVG.selectAll("path")
-	  .data(pie(dataset))
-	  .enter()
-	  .append("path")
-	  .attr("d", arc)
-	  .attr("fill", function(d, i) {
-	      if( i  == 0 ){ return "lightgreen"; }
-	      else if( i == 1 ){ return "lightsteelblue"; }
-	      else if( i == 2 ){ return "red"; }
-	      else if( i == 3 ){ return "green"; }
-	      else if( i == 4 ){ return "maroon"; }
-	      else if( i == 5 ){ return "orange"; }
-	      else if( i == 6 ){ return "steelblue"; }
-	      else if( i == 7 ){ return "purple"; }
-	      else if( i == 8 ){ return "goldenrod"; }
-	      else if( i == 9 ){ return "blue"; }
-	      else if( i == 10 ){ return "cyan"; }
-	      else if( i == 11 ){ return "navy"; }
-	  })
-	  .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")")
-	  .transition()
-	  .ease(d3.easeLinear)
-	  .duration(500)
-	  .attrTween("d", pieTween);
+	path = pieSVG.selectAll("path")
+	    .data(pie(dataset))
+	    .enter()
+	    .append("path")
+	    .attr("d", arc)
+	    .attr("fill", function(d, i) {
+		if( i  == 0 ){ return "lightgreen"; }
+		else if( i == 1 ){ return "lightsteelblue"; }
+		else if( i == 2 ){ return "red"; }
+		else if( i == 3 ){ return "green"; }
+		else if( i == 4 ){ return "maroon"; }
+		else if( i == 5 ){ return "orange"; }
+		else if( i == 6 ){ return "steelblue"; }
+		else if( i == 7 ){ return "purple"; }
+		else if( i == 8 ){ return "goldenrod"; }
+		else if( i == 9 ){ return "blue"; }
+		else if( i == 10 ){ return "cyan"; }
+		else if( i == 11 ){ return "navy"; }
+	    })
+	    .attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")")
 
-      text = pieSVG.selectAll("text")
-      	  .transition()
-	  .ease(d3.easeLinear)
-	  .duration(500)
-	  .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")";})
-	  .attr("dy", ".35em")
-	  .text(function(d) {
-	      if (activity == "avg_weekly"){
-		  return d.data.avg_weekly;
-	      }
-	      else if (activity == "avg_weekend"){
-		  return d.data.avg_weekend;
-	      }
-	      else if (activity == "percent_weekly"){
-		  return d.data.percent_weekly;
-	      }
-	      else if (activity == "percent_weekend"){
-		  return d.data.percent_weekend;
-	      }
-	      else if (activity == "pro_weekly"){
-		  return d.data.pro_weekly;
-	      }
-	      else{
-		  return d.data.pro_weekend;
-	      }
-	  });
-  }
+	path.on('mouseover', function(d){
+	    tooltip.select('.label').html(d.data.Activity.toUpperCase()).style('color','black');
+	    tooltip.select('.label').html(d.data.Activity);
+
+	    if( activity == "avg_weekly" ){
+		console.log("testing = " + d.data.avg_weekly);
+		tooltip.select('.hour').html(d.data.avg_weekly + ' hour'); }
+	    else if( activity == "avg_weekend" ){
+		tooltip.select('.hour').html(d.data.avg_weekend + ' hour');}
+	    else if( activity == "percent_weekly" ){
+		tooltip.select('.hour').html(d.data.percent_weekly + ' hour'); }
+	    else if( activity == "percent_weekend" ){
+		tooltip.select('.hour').html(d.data.percent_weekend + ' hour'); }
+	    else if( activity == "pro_weekly" ){
+		tooltip.select('.hour').html(d.data.pro_weekly + ' hour'); }
+	    else if( activity == "pro_weekend" ){
+		tooltip.select('.hour').html(d.data.pro_weekend + ' hour'); }
+
+	    tooltip.style('display', 'block');
+	    tooltip.style('opacity',2);
+	});
+
+	path.on("mousemove", function(d){
+	    tooltip.style("top", (d3.event.layerY + 10) + "px")
+		.style("left", (d3.event.layerX - 25) + "px");
+	});
+
+
+
+    }
     var pieTween = function(b){
 	b.innerRadius = 0;
 	var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
@@ -459,9 +501,9 @@ var getTimes = function(){
 	min = 0;
 	sec = 0;
 	hr += 1;
-  curTime = (curTime + 1) % 24
-  console.log("Current hour:");
-  console.log(curTime);
+	curTime = (curTime + 1) % 24
+	console.log("Current hour:");
+	console.log(curTime);
     }
 }
 
@@ -558,11 +600,11 @@ var tick = function(){
 setInterval(tick,1/10000);
 
 //var slider =
-    //d3.slider();
-    //.value(1000)
-    //.on("slide", function(evt, value){
-	//setInterval(tick, value);
-    //});
+//d3.slider();
+//.value(1000)
+//.on("slide", function(evt, value){
+//setInterval(tick, value);
+//});
 
 
 
@@ -583,7 +625,7 @@ var line_chart = d3.select(".line_chart");
 var height = line_chart.node().getBoundingClientRect().height;
 var width = line_chart.node().getBoundingClientRect().width;
 line_chart = line_chart.attr("width", width)
-                       .attr("height", height);
+    .attr("height", height);
 var g = line_chart.append("g");
 var yAxis = d3.scaleLinear()
     .range([0, width]);
@@ -599,6 +641,7 @@ var tdata;
 // console.log("code gets to this point")
 
 d3.csv("static/life.csv", function (error,data) {
+
   if (error) throw error;
   data.forEach(function(d) {
     d.Activity = d.Activity;
@@ -631,5 +674,38 @@ d3.csv("static/life.csv", function (error,data) {
      .call(d3.axisBottom(xAxis));
  svg.append("g")
     .call(d3.axisLeft(yAxis));
+
+    if (error) throw error;
+    data.forEach(function(d) {
+	d.Activity = d.Activity;
+	d.a15to19 = +d.a15to19;
+	d.a20to24 = +d.a20to24;
+	d.a25to34 = +d.a25to34;
+	d.a35to44 = +d.a35to44;
+	d.a45to54 = +d.a45to54;
+	d.a55to64 = +d.a55to64;
+	d.a75 = +d.a75
+	return d;
+    })
+    xAxis.domain([0, 8])
+    yAxis.domain([0, 15]);
+
+
+    // g.append("g")
+    //  .attr("transform", "translate(0," + height + ")")
+    console.log("ho");
+    console.log(data);
+    if (function(d) {return d.Activity} == selectedActivity) {
+	tdata = [d.a15to19, d.a20to24, d.a25to34, d.a35to44, d.a45to54, d.a55to64, d.a75]
+    }
+    g.append("path")
+	.data(tdata)
+	.attr("class", "line")
+	.attr("d", valueline);
+    svg.append("g")
+	.attr("transform", "translate(0," + height + ")")
+	.call(d3.axisBottom(x));
+    svg.append("g")
+	.call(d3.axisLeft(y));
 
 });
