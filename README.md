@@ -8,7 +8,7 @@
 - The following links were used as inspiration:
   - [Wall Street Journal on Time Use](https://graphics.wsj.com/time-use/)
   - [Your Life in Numbers](http://yourlifeinnumbers.org/)
-  - [Reebok Survey](https://www.prnewswire.com/news-releases/reebok-survey-humans-spend-less-than-one-percent-of-life-on-physical-fitness)
+  - [Reebok Survey](https://www.prnewswire.com/news-releases/reebok-survey-humans-spend-less-than-one-percent-of-life-on-physical-fitness-300261752.html)
   - [Flowing Data Average American Day](https://flowingdata.com/2015/12/15/a-day-in-the-life-of-americans/)
 
 
