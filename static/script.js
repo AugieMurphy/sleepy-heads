@@ -306,7 +306,7 @@ d3.csv("/static/table2.csv", function(data) {
     dataset = [sleeping,ingestion,household,buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other];
 
     console.log(dataset);
-    
+
     //var dataset = [sleeping,ingestion,household,buying, caring_house, caring_not_house, working, education, organizing, leisuresports, social, other];
 
 
@@ -320,8 +320,8 @@ d3.csv("/static/table2.csv", function(data) {
     var width = 500;
     var radius = height / 2;
 
-    
-    
+
+
     pieSVG.attr("width", width)
 	.attr("height", height)
 	.style("border-style","solid")
@@ -341,7 +341,7 @@ d3.csv("/static/table2.csv", function(data) {
 
     tooltip.append("div")
 	.attr("class", "label");
-    
+
     tooltip.append("div")
 	.attr("class", "hour");
 
@@ -368,7 +368,7 @@ d3.csv("/static/table2.csv", function(data) {
 	.attr('x', legendRectSize + legendSpacing)
 	.attr('y', legendRectSize - legendSpacing)
 	.text(function(d) { return d; })
-       
+
 
     init = function(){
 	//activity = document.getElementById("activity").value;
@@ -437,7 +437,8 @@ d3.csv("/static/table2.csv", function(data) {
 		});
 	
 
-	
+
+
     }
     var pieTween = function(b){
 	b.innerRadius = 0;
@@ -646,6 +647,40 @@ var tdata;
 // console.log("code gets to this point")
 
 d3.csv("static/life.csv", function (error,data) {
+
+  if (error) throw error;
+  data.forEach(function(d) {
+    d.Activity = d.Activity;
+    d.a15to19 = +d.a15to19;
+    d.a20to24 = +d.a20to24;
+    d.a25to34 = +d.a25to34;
+    d.a35to44 = +d.a35to44;
+    d.a45to54 = +d.a45to54;
+    d.a55to64 = +d.a55to64;
+    d.a75 = +d.a75
+    return d;
+  })
+  xAxis.domain([0, 8])
+  yAxis.domain([0, 15]);
+
+
+  // g.append("g")
+  //  .attr("transform", "translate(0," + height + ")")
+  console.log("ho");
+  console.log(data);
+  if (function(d) {return d.Activity} == selectedActivity) {
+    tdata = [d.a15to19, d.a20to24, d.a25to34, d.a35to44, d.a45to54, d.a55to64, d.a75]
+  }
+  g.append("path")
+    .data(data)
+    .attr("class", "line")
+    .attr("d", valueline);
+  svg.append("g")
+     .attr("transform", "translate(0," + height + ")")
+     .call(d3.axisBottom(xAxis));
+ svg.append("g")
+    .call(d3.axisLeft(yAxis));
+
     if (error) throw error;
     data.forEach(function(d) {
 	d.Activity = d.Activity;
