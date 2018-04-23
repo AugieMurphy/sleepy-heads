@@ -564,6 +564,19 @@ setInterval(tick,1/10000);
 	//setInterval(tick, value);
     //});
 
+
+
+/*========================  Hour Display  ========================*/
+var interHour = setInterval(function() {
+          updateHour();
+        }, 100);
+hour_div = d3.select(".hour_display");
+hour_div.append("h3").text(curTime);
+var updateHour = function() {
+  hour_div.selectAll("h3").remove();
+  hour_div.append("h3").text(curTime);
+}
+
 /*========================  TIMELINE  ========================*/
 
 var line_chart = d3.select(".line_chart");
