@@ -330,7 +330,7 @@ d3.csv("/static/table2.csv", function(data) {
 	.attr("transform", "translate(" + (width / 2) +  "," + (height / 2) + ")");
 
     arc = d3.arc()
-	.innerRadius(200)
+	.innerRadius(0)
 	.outerRadius(radius);
 
     pie = d3.pie();
@@ -344,31 +344,6 @@ d3.csv("/static/table2.csv", function(data) {
 
     tooltip.append("div")
 	.attr("class", "hour");
-
-    legend = svg.selectAll('.legend')
-	.data(color.domain())
-	.enter()
-	.append('g')
-	.attr('class', 'legend')
-	.attr('transform', function(d, i) {
-	    var height = legendRectSize + legendSpacing;
-	    var offset =  height * color.domain().length / 2;
-	    var horz = -2 * legendRectSize;
-	    var vert = i * height - offset;
-	    return 'translate(' + horz + ',' + vert + ')';
-	});
-
-    legend.append('rect')
-	.attr('width', legendRectSize)
-	.attr('height', legendRectSize)
-	.style('fill', color)
-	.style('stroke', color);
-
-    legend.append('text')
-	.attr('x', legendRectSize + legendSpacing)
-	.attr('y', legendRectSize - legendSpacing)
-	.text(function(d) { return d; })
-
 
     init = function(){
 	//activity = document.getElementById("activity").value;
@@ -478,12 +453,8 @@ d3.csv("/static/table2.csv", function(data) {
 	}
     }
 
-    // setInterval(init);
-    // init();
 
 });
-// init();
-
 /*========================  CLOCK  ========================*/
 
 
