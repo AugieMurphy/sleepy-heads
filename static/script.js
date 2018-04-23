@@ -410,7 +410,7 @@ d3.csv("/static/table2.csv", function(data) {
 			tooltip.style('display', 'none');
 			tooltip.style('opacity',0);
 		});
-	
+
 
 
 
@@ -567,12 +567,58 @@ var tick = function(){
 
 setInterval(tick,1/10000);
 
-//var slider =
-//d3.slider();
-//.value(1000)
-//.on("slide", function(evt, value){
-//setInterval(tick, value);
-//});
+var slidervg = d3.select(".slider"),
+    margin = {right: 50, left: 50},
+    sliderwidth = +slidervg.attr("width") - margin.left - margin.right,
+    sliderheight = +slidervg.attr("height");
+
+var x = d3.scaleLinear()
+    .domain([0, 23])
+    .range([0, sliderwidth])
+    .clamp(true);
+
+var slider = slidervg.append("g")
+    .attr("class", "slider")
+    .attr("transform", "translate(" + margin.left + "," + sliderheight / 2 + ")");
+
+slider.append("line")
+    .attr("class", "track")
+    .attr("x1", x.range()[0])
+    .attr("x2", x.range()[1])
+  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+    .attr("class", "track-inset")
+  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+    .attr("class", "track-overlay")
+    .call(d3.drag()
+        .on("start.interrupt", function() { slider.interrupt(); })
+        .on("start drag", function() { hue(x.invert(d3.event.x)); }));
+
+slider.insert("g", ".track-overlay")
+    .attr("class", "ticks")
+    .attr("transform", "translate(0," + 18 + ")")
+  .selectAll("text")
+  .data(x.ticks(24))
+  .enter().append("text")
+    .attr("x", x)
+    .attr("text-anchor", "middle")
+    .text(function(d) { return d ; });
+
+var handle = slider.insert("circle", ".track-overlay")
+    .attr("class", "handle")
+    .attr("r", 9);
+
+slider.transition() // Gratuitous intro!
+    .duration(750);
+
+function hue(h) {
+  handle.attr("cx", x(h));
+  console.log(Math.trunc(h));
+  sec = 0;
+  min = 0;
+  hr = Math.trunc(h);
+  curTime = Math.trunc(h);
+}
+
 
 
 
@@ -586,4 +632,3 @@ var updateHour = function() {
   hour_div.selectAll("h3").remove();
   hour_div.append("h3").text(curTime);
 }
-
