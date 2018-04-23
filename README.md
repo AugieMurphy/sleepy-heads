@@ -25,12 +25,12 @@ Time is the ultimate resource that we all wish we had more of. Do you want to kn
   - pro weekend is the time a person who does an activity professionally spends doing each activity during weekends/holidays
 - We will have a clock move (faster than real time) and display a bar graph next to it that indicates what percentage of people are doing each activity at the time indicated by the clock
 - Hover over the pie chart to look at values
-- Slider to modify the clock speed
+- Slider to modify the clock time
 
 ## What will be shown, absent user interaction?
 - As a clock moves, there will a horizontal bar chart that represents what percent of people are doing what. 
 - The pie chart will default to avg weekly.
-- The activity timelinegraph shown will default to sleeping.
+- The slider will default to hour 0.
 
 
 ## What questions will your visualization allow user to explore? What questions will it provoke?
@@ -39,11 +39,15 @@ The user will be able to explore how the average American spends their day and h
  
 ## Explanation of D3 feature utilization
 - Sped up moving clock to show time of day
-- Slider to modify clock
+- Slider to modify clock time
 - Bar graph matched with the clock
 - Drop down to select type of data and subsequent change of pie chart
 - Transitions
 
 ## Known Bugs
-- 
+- Hour hand doesn't line up with hour after using slider
+- Slider gets cut off on smaller screens
+- The box that contains the hour counter shifts with screen resizing
+- Names of pie chart options are not super descriptive
+
 
