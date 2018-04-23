@@ -58,3 +58,8 @@ added hover to pie chart
 freudenbergJ -- 2018-04-22 22:01:53
 reformatted website + styling
 added hour counter so it's easier to read the clock
+
+wuY -- 2018-04-22 11:07
+removed timeline and move it to test as backup
+removed secHand
+fixed bar width and rouding error
