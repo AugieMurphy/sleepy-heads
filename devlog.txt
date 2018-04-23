@@ -37,6 +37,9 @@ flask app creation and routing
 freudenbergJ -- 2018-04-17 17:48:32
 csv reading into js
 
+boylanA -- 2018-04-19 14:55
+collected final data for activity per hour
+
 wuY + freudenbergJ -- 2018-04-20 13:00:00
 worked on styling
 
@@ -63,3 +66,6 @@ wuY -- 2018-04-22 11:07
 removed timeline and move it to test as backup
 removed secHand
 fixed bar width and rouding error
+
+boylanA -- 2018-04-23 1:25
+added slider for the clock
