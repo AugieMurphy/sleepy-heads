@@ -126,15 +126,15 @@ d3.csv("/static/hourly.csv", function(error, data) {
 
     bar.append("text")
         .attr("x", function(d) {
-            return xAxis(d.tx) + 40; })
+            return xAxis(d.tx) + 20; })
         .attr("y", barHeight / 2)
         .text(function(d) { return d.Activity; });
 
     bar.append("text")
         .attr("x", function(d) {
-            return xAxis(d.tx); })
+            return xAxis(d.tx) * 3 / 4; })
         .attr("y", barHeight / 2)
-        .text(function(d) { return d.tx * 100; });
+        .text(function(d) { return Math.round(d.tx * 100); });
 
 
     // .transition().duration(2000)
@@ -253,7 +253,7 @@ function updateBar() {
 
 	bar.append("rect")
             .attr("width", function(d) {
-		return xAxis(d.tx); })
+		return xAxis(d.tx) * 3 / 4; })
             .attr("height", barHeight - 1);
 
 
@@ -262,15 +262,15 @@ function updateBar() {
 
 	bar.append("text")
 	    .attr("x", function(d) {
-		return xAxis(d.tx) + 40; })
+		return xAxis(d.tx) * 3 / 4 + 25; })
 	    .attr("y", barHeight / 2)
 	    .text(function(d) { return d.Activity; });
 
 	bar.append("text")
 	    .attr("x", function(d) {
-		return xAxis(d.tx); })
+		return xAxis(d.tx) * 3 / 4; })
 	    .attr("y", barHeight / 2)
-	    .text(function(d) { return d.tx * 100; });
+	    .text(function(d) { return Math.round(d.tx * 1000) / 10; });
 
 
     });
