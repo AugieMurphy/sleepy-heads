@@ -24,10 +24,8 @@ Time is the ultimate resource that we all wish we had more of. Do you want to kn
   - pro weekly is the time a person who does an activity professionally spends doing each activity during the week/workday
   - pro weekend is the time a person who does an activity professionally spends doing each activity during weekends/holidays
 - We will have a clock move (faster than real time) and display a bar graph next to it that indicates what percentage of people are doing each activity at the time indicated by the clock
-- We will have a timeline of an average person's lifespan with a line graph representing the frequency of a user selected activity at every point in their lives.
-- Hover over graphs (e.g. the lifetimeline) to look at values
-- They can choose the timespan (day or lifetime) and the big numbers will change accordingly?
- - *Extra Time Option*: week, month, etc…
+- Hover over the pie chart to look at values
+- Slider to modify the clock speed
 
 ## What will be shown, absent user interaction?
 - As a clock moves, there will a horizontal bar chart that represents what percent of people are doing what. 
@@ -41,9 +39,11 @@ The user will be able to explore how the average American spends their day and h
  
 ## Explanation of D3 feature utilization
 - Sped up moving clock to show time of day
+- Slider to modify clock
 - Bar graph matched with the clock
-- Timeline w/ hoverability
-- Drop down to select activity/type of data and subsequent change of other elements
-- Transitions between activities
+- Drop down to select type of data and subsequent change of pie chart
+- Transitions
 
+## Known Bugs
+- 
 
